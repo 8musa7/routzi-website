@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Contact — Routzi</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap">
+<style>
+  :root{
+    --ground:#F7F5EF; --surface:#FFFFFF; --ink:#1F1D1A; --ink2:#5F5E5A;
+    --muted:#888780; --line:#EBE7DC; --accent:#EA6A20; --accent-dark:#C9560F;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--ground);color:var(--ink);
+    font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+    font-size:16px;line-height:1.65;-webkit-font-smoothing:antialiased}
+  .page{max-width:720px;margin:0 auto;padding:40px 24px 96px}
+  a{color:var(--accent);text-decoration:none}
+  a:hover{text-decoration:underline}
+  .top{display:flex;align-items:center;justify-content:space-between;margin:0 0 48px}
+  .brand{font-family:"Space Grotesk",Inter,sans-serif;font-weight:700;font-size:22px;
+    letter-spacing:-.01em;color:var(--ink);text-decoration:none}
+  .brand span{color:var(--accent)}
+  .top a.small{font-size:14px;color:var(--ink2)}
+  .eyebrow{font-family:"JetBrains Mono",ui-monospace,monospace;font-size:11px;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--accent);margin:0 0 12px}
+  h1{font-family:"Space Grotesk",Inter,sans-serif;font-size:clamp(30px,5vw,40px);
+    font-weight:700;letter-spacing:-.02em;line-height:1.12;margin:0 0 12px}
+  .lede{font-size:17px;color:var(--ink2);margin:0 0 32px;max-width:56ch}
+  .card{background:var(--surface);border:1px solid var(--line);border-radius:8px;
+    padding:26px 26px 24px;margin:0 0 20px}
+  .label{font-family:"JetBrains Mono",ui-monospace,monospace;font-size:11px;letter-spacing:.12em;
+    text-transform:uppercase;color:var(--muted);margin:0 0 10px}
+  .email{font-family:"Space Grotesk",Inter,sans-serif;font-size:clamp(22px,4vw,30px);font-weight:600;
+    letter-spacing:-.01em;word-break:break-all;margin:0 0 18px;color:var(--ink)}
+  .actions{display:flex;flex-wrap:wrap;gap:10px}
+  .btn{display:inline-flex;align-items:center;gap:8px;padding:12px 18px;border-radius:999px;
+    font-weight:600;font-size:15px;cursor:pointer;border:1.5px solid transparent;text-decoration:none}
+  .btn-primary{background:var(--accent);color:#fff}
+  .btn-primary:hover{background:var(--accent-dark);text-decoration:none}
+  .btn-ghost{background:transparent;color:var(--ink);border-color:var(--ink)}
+  .btn-ghost:hover{background:var(--ink);color:#fff;text-decoration:none}
+  .hint{font-size:13px;color:var(--muted);margin:12px 0 0}
+  h2{font-family:"Space Grotesk",Inter,sans-serif;font-size:18px;font-weight:600;
+    letter-spacing:-.01em;margin:0 0 10px}
+  ul{margin:0;padding-left:20px;color:var(--ink2)}
+  li{margin-bottom:8px}
+  li b{color:var(--ink);font-weight:600}
+  p{color:var(--ink2);margin:0 0 12px}
+  .row{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+  @media (max-width:600px){.row{grid-template-columns:1fr}}
+  footer{margin-top:56px;padding-top:20px;border-top:1px solid var(--line);
+    color:var(--muted);font-size:14px;display:flex;flex-wrap:wrap;gap:14px;justify-content:space-between}
+  .copied{color:#2E7D32;font-weight:600}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="top">
+    <a class="brand" href="/">rout<span>zi</span></a>
+    <a class="small" href="/">← Back to routzi.com</a>
+  </div>
+
+  <p class="eyebrow" id="eyebrow">Get in touch</p>
+  <h1 id="title">Talk to a real person at Routzi.</h1>
+  <p class="lede" id="lede">Questions, a demo, pricing for your station, or help getting set up — one email reaches us. We read every message and reply personally.</p>
+
+  <div class="card">
+    <p class="label">Email us</p>
+    <p class="email" id="emailText">support@routzi.com</p>
+    <div class="actions">
+      <button class="btn btn-primary" id="copyBtn" type="button">Copy email address</button>
+      <a class="btn btn-ghost" id="mailBtn" href="mailto:support@routzi.com">Open in your email app</a>
+    </div>
+    <p class="hint" id="hint">"Open in your email app" launches whatever mail program is on your device (Outlook, Gmail, Apple Mail). If nothing happens, just copy the address and email us from anywhere.</p>
+  </div>
+
+  <div class="row">
+    <div class="card">
+      <h2>What to include</h2>
+      <ul>
+        <li><b>Your company name</b> and your Amazon station code (for example, DML4)</li>
+        <li><b>Roughly how many drivers</b> you run</li>
+        <li><b>What you need</b> — a trial, a demo, a pricing question, or help with something specific</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h2>Already a customer?</h2>
+      <p>Sign in to your dashboard at <a href="https://app.routzi.com">app.routzi.com</a>. Drivers use the Routzi app on their phones — your company administrator sets up driver accounts.</p>
+      <h2 style="margin-top:14px">Privacy questions</h2>
+      <p>How we handle data is written in plain English in our <a href="/privacy.html">Privacy Policy</a>. Data or deletion requests go to the same support address.</p>
+    </div>
+  </div>
+
+  <footer>
+    <span>© 2026 Routzi LLC. All rights reserved.</span>
+    <span><a href="/privacy.html">Privacy Policy</a></span>
+  </footer>
+</div>
+
+<script>
+(function(){
+  var EMAIL = 'support@routzi.com';
+  var params = new URLSearchParams(location.search);
+  var intent = params.get('intent');
+  var mailBtn = document.getElementById('mailBtn');
+  var copyBtn = document.getElementById('copyBtn');
+
+  if (intent === 'trial') {
+    document.getElementById('eyebrow').textContent = 'Start your 30-day free trial';
+    document.getElementById('title').textContent = 'Start your free trial with one email.';
+    document.getElementById('lede').textContent = 'Tell us your company name, your station code, and about how many drivers you run. We set you up personally — no charges during the trial, cancel anytime.';
+    mailBtn.href = 'mailto:' + EMAIL + '?subject=' + encodeURIComponent('Start my Routzi trial');
+  }
+
+  copyBtn.addEventListener('click', function(){
+    var done = function(){
+      copyBtn.textContent = 'Copied ✓';
+      copyBtn.classList.add('copied');
+      setTimeout(function(){ copyBtn.textContent = 'Copy email address'; copyBtn.classList.remove('copied'); }, 2200);
+    };
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(EMAIL).then(done, function(){ fallback(); });
+    } else { fallback(); }
+    function fallback(){
+      var ta = document.createElement('textarea');
+      ta.value = EMAIL; ta.setAttribute('readonly',''); ta.style.position='absolute'; ta.style.left='-9999px';
+      document.body.appendChild(ta); ta.select();
+      try { document.execCommand('copy'); done(); } catch(e) { copyBtn.textContent = 'Select the address above to copy'; }
+      document.body.removeChild(ta);
+    }
+  });
+})();
+</script>
+</body>
+</html>
