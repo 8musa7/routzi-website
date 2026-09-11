@@ -738,7 +738,8 @@
           <div>Per month: <b id="perMonth">$1,045</b> · <b id="perMonthDrv">$12.30</b>/driver</div>
           <div id="saveLine" class="save-line">Save <b id="saveAmt">$1,546</b>/year vs paying monthly</div>
         </div>
-        <a href="/contact.html?intent=trial" class="btn btn-primary">Start 30-day free trial</a>
+        <div class="calc-note" style="margin-top:10px">Bank transfer (ACH) rate. Card: $12.67/driver/month &middot; $131.58/driver/year.</div>
+        <a id="trialCta" href="https://app.routzi.com/signup?drivers=85&amp;plan=annual" class="btn btn-primary">Start 30-day free trial</a>
         <div class="calc-note">No charges during your trial.</div>
       </div>
     </div>
@@ -780,11 +781,16 @@
     perMonth=document.getElementById('perMonth'),perMonthDrv=document.getElementById('perMonthDrv'),
     saveLine=document.getElementById('saveLine'),saveAmt=document.getElementById('saveAmt'),
     termLabel=document.getElementById('termLabel'),btnAnnual=document.getElementById('btnAnnual'),
-    btnMonthly=document.getElementById('btnMonthly');
+    btnMonthly=document.getElementById('btnMonthly'),trialCta=document.getElementById('trialCta');
   const ANNUAL_PER_DAY=0.35, MONTHLY_PER_DAY=0.41; let term='annual';
   const fmt=n=>'$'+Math.round(n).toLocaleString('en-US');
   function update(){
     const d=parseInt(slider.value,10); dcNum.textContent=d;
+    // Hand the visitor's choices to the sign-up form. update() is the single
+    // place this can be written from: the slider, both toggles and the initial
+    // load all route through here, so the href cannot drift from what is shown.
+    // No tracking parameters — only the two values the form itself uses.
+    if(trialCta) trialCta.href='https://app.routzi.com/signup?drivers='+d+'&plan='+term;
     const pct=((d-slider.min)/(slider.max-slider.min))*100;
     slider.style.background=`linear-gradient(to right,var(--orange) 0%,var(--orange) ${pct}%,#33456B ${pct}%,#33456B 100%)`;
     // annual figures
