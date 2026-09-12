@@ -23,17 +23,21 @@
   .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
   a{color:inherit;text-decoration:none}
 
-  /* TEMPORARY — Amazon Ignite Live banner (Sep 15–16, 2026). The script under the banner removes it after the show; delete both blocks afterwards. */
-  .event-bar{background:var(--ink);color:var(--cream);font-size:14px;line-height:1.4}
-  .event-bar .wrap{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:8px 22px;padding-top:9px;padding-bottom:9px}
+  /* TEMPORARY — Amazon Ignite Live banner (Sep 14–16, 2026). The script under the banner removes it after the show; delete both blocks afterwards. */
+  .event-bar{background:var(--ink);color:var(--cream);font-size:16px;line-height:1.4}
+  .event-bar .wrap{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:10px 26px;padding-top:14px;padding-bottom:14px}
   .event-bar p{margin:0;text-align:center}
   .event-bar b{font-weight:600;color:#fff;white-space:nowrap}
   .event-bar .nb{white-space:nowrap}
-  .event-bar .sep{color:rgba(246,241,231,.45);padding:0 5px}
-  .event-bar .tag{font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--orange);margin-right:12px}
-  .event-bar .cta{display:inline-flex;align-items:center;gap:6px;background:var(--orange);color:#fff;font-weight:600;font-size:13.5px;padding:8px 16px;border-radius:100px;white-space:nowrap;transition:.15s}
+  .event-bar .sep{color:rgba(246,241,231,.45);padding:0 6px}
+  .event-bar .tag{display:inline-flex;align-items:center;gap:8px;vertical-align:middle;font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--orange);margin-right:14px;animation:event-tag 1.6s ease-in-out infinite}
+  .event-bar .tag::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--orange);animation:event-dot 1.6s ease-out infinite}
+  @keyframes event-tag{0%,100%{opacity:1}50%{opacity:.45}}
+  @keyframes event-dot{0%{box-shadow:0 0 0 0 rgba(234,106,32,.65)}70%{box-shadow:0 0 0 9px rgba(234,106,32,0)}100%{box-shadow:0 0 0 0 rgba(234,106,32,0)}}
+  @media(prefers-reduced-motion:reduce){.event-bar .tag,.event-bar .tag::before{animation:none}}
+  .event-bar .cta{display:inline-flex;align-items:center;gap:6px;background:var(--orange);color:#fff;font-weight:600;font-size:15px;padding:10px 22px;border-radius:100px;white-space:nowrap;transition:.15s}
   .event-bar .cta:hover{background:#d15d18}
-  @media(max-width:640px){.event-bar{font-size:13px}.event-bar .wrap{gap:8px 12px;padding-top:10px;padding-bottom:10px}.event-bar .tag{display:block;margin:0 0 2px}.event-bar .when{display:block}.event-bar .when .sep:first-child{display:none}.event-bar .cta{width:100%;justify-content:center}}
+  @media(max-width:640px){.event-bar{font-size:14px}.event-bar .wrap{gap:10px 12px;padding-top:12px;padding-bottom:12px}.event-bar .tag{display:flex;justify-content:center;margin:0 0 4px}.event-bar .when{display:block}.event-bar .when .sep:first-child{display:none}.event-bar .cta{width:100%;justify-content:center;padding:12px 22px}}
 
   header{position:sticky;top:0;z-index:50;background:rgba(246,241,231,.85);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
   nav{display:flex;align-items:center;justify-content:space-between;height:80px}
@@ -377,11 +381,11 @@
 </style>
 </head>
 <body>
-<!-- TEMPORARY: Amazon Ignite Live banner (Sep 15–16, 2026). Hides itself after Sep 16; delete this block and its CSS after the show. -->
+<!-- TEMPORARY: Amazon Ignite Live banner (Sep 14–16, 2026). Hides itself after Sep 16; delete this block and its CSS after the show. -->
 <div class="event-bar" id="event-bar" role="region" aria-label="Meet Routzi at Amazon Ignite Live">
   <div class="wrap">
-    <p><span class="tag">Live event</span>Meet Routzi at <b>Amazon Ignite Live</b><span class="when"><span class="sep">·</span><span class="nb">September 15–16</span><span class="sep">·</span><span class="nb">The Wynn, Las Vegas</span></span></p>
-    <a class="cta" href="https://calendly.com/ray-routzi/30min" target="_blank" rel="noopener">Book a time with Ray →</a>
+    <p><span class="tag">Live event</span>Meet Routzi at <b>Amazon Ignite Live</b><span class="when"><span class="sep">·</span><span class="nb">September 14–16</span><span class="sep">·</span><span class="nb">The Wynn, Las Vegas</span></span></p>
+    <a class="cta" href="https://calendly.com/ray-routzi/30min" target="_blank" rel="noopener">Book a time →</a>
   </div>
 </div>
 <script>
