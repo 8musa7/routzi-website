@@ -140,7 +140,7 @@
   /* WHC feature section */
   .whc-sec{background:var(--paper)}
   .whc-split{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
-  @media(max-width:860px){.whc-split{grid-template-columns:1fr;gap:36px}}
+  @media(max-width:860px){.whc-split{grid-template-columns:minmax(0,1fr);gap:36px}}
   .whc-copy .sec-eyebrow{margin-bottom:14px}
   .whc-copy h2{font-size:clamp(26px,3.6vw,38px);margin-bottom:16px;max-width:16ch}
   .whc-copy p{font-size:16px;color:var(--ink-soft);margin-bottom:14px}
@@ -270,7 +270,13 @@
   .ccell{padding:15px 20px;font-size:14.5px}
   .ccol{text-align:center;font-weight:700}
   .ccol.us{color:var(--green)}.ccol.them{color:var(--red)}
-  .crow:nth-child(even):not(.head){background:var(--paper)}
+  .crow:nth-child(odd):not(.head):not(.hl){background:var(--paper)}
+  .crow.hl{background:#FBE9DD}
+  .ccell .cl-main{display:block;font-weight:600}
+  .ccell .cl-sub{display:block;margin-top:3px;font-size:12.5px;line-height:1.4;color:var(--ink-soft)}
+  .ccol.ask{font-size:12.5px;font-weight:500;color:var(--ink-soft)}
+  .cl-link{color:var(--ink);font-weight:600;white-space:nowrap;text-decoration:underline;text-underline-offset:2px}
+  .cl-link:hover{color:var(--orange)}
 
   .pricing{background:var(--ink);color:var(--cream)}
   .pricing .sec-eyebrow{color:#FF9E63}.pricing .sec-sub{color:#C9BFAE}
@@ -335,9 +341,10 @@
     .sec-title{font-size:26px}
     .sec-sub{font-size:15px}
     /* comparison table: shrink label col, keep readable */
-    .crow{grid-template-columns:1fr 64px 64px}
+    .crow{grid-template-columns:1fr 86px 64px}
     .crow.head .ccell,.ccell{padding:12px 10px;font-size:13px}
-    .crow.head .ccol{font-size:13px}
+    .crow.head .ccol{font-size:12px;padding:12px 6px}
+    .ccell .cl-sub,.ccol.ask{font-size:11.5px}
     /* pricing card */
     .calc-left,.calc-right{padding:26px 22px}
     .price-big{font-size:44px}
@@ -351,8 +358,13 @@
   }
   @media(max-width:400px){
     .hero h1{font-size:28px}
-    .crow{grid-template-columns:1fr 52px 52px}
+    .crow{grid-template-columns:1fr 76px 52px}
+    .whc-head{flex-wrap:wrap;row-gap:10px}
+    .whc-head>div:nth-child(2){flex:0 0 calc(100% - 52px);min-width:0}
+    .whc-flag{margin-left:52px}
+    .crow.head .ccol{font-size:11px;padding:10px 4px}
     .ccell{font-size:12px;padding:10px 7px}
+    .ccell .cl-sub,.ccol.ask{font-size:11px}
   }
 </style>
 </head>
@@ -705,6 +717,7 @@
         <div class="ccell ccol">Competitors</div>
         <div class="ccell ccol us">Routzi</div>
       </div>
+      <div class="crow hl"><div class="ccell"><span class="cl-main">No scraping. Your Amazon contract stays safe.</span><span class="cl-sub">Amazon doesn't allow tools that scrape its portals. Routzi never logs into Amazon; it works from the reports you download. <a class="cl-link" href="/no-scraping.html">Why this matters →</a></span></div><div class="ccell ccol ask">Ask them</div><div class="ccell ccol us">✓</div></div>
       <div class="crow"><div class="ccell">OTR disputes tagged with Amazon's reasons and ready before Monday's cutoff</div><div class="ccell ccol them">✕</div><div class="ccell ccol us">✓</div></div>
       <div class="crow"><div class="ccell">Hours &amp; overtime caught <em>before</em> they happen (projected)</div><div class="ccell ccol them">✕</div><div class="ccell ccol us">✓</div></div>
       <div class="crow"><div class="ccell">Automatic surfacing of disputable charges + guided filing</div><div class="ccell ccol them">✕</div><div class="ccell ccol us">✓</div></div>
@@ -784,7 +797,7 @@
       </div>
       <div class="foot-links">
         <div class="foot-col"><h4>Product</h4><a href="#features">Features</a><a href="#compare">Why Routzi</a><a href="#pricing">Pricing</a></div>
-        <div class="foot-col"><h4>Company</h4><a href="/contact.html">Contact</a><a href="#pricing">Start free trial</a><a href="/privacy.html">Privacy Policy</a></div>
+        <div class="foot-col"><h4>Company</h4><a href="/contact.html">Contact</a><a href="#pricing">Start free trial</a><a href="/privacy.html">Privacy Policy</a><a href="/no-scraping.html">No scraping</a></div>
         <div class="foot-col"><h4>Get in touch</h4><a href="mailto:support@routzi.com">support@routzi.com</a></div>
       </div>
     </div>
