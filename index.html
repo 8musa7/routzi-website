@@ -366,6 +366,46 @@
     .ccell{font-size:12px;padding:10px 7px}
     .ccell .cl-sub,.ccol.ask{font-size:11px}
   }
+
+  /* RTS highlight (built like the Disputes one) */
+  .rts-split{display:grid;grid-template-columns:minmax(0,1fr) 606px;gap:52px;align-items:center}
+  @media(max-width:1179px){.rts-split{grid-template-columns:minmax(0,1fr);gap:40px}.rts-board{max-width:640px}}
+  .rts-copy .disp-steps b{color:#fff;font-weight:600}
+  .rts-board{background:var(--paper);color:var(--ink);border-radius:16px;overflow:hidden;box-shadow:0 30px 60px -24px rgba(0,0,0,.55)}
+  .rts-bh{display:flex;align-items:center;gap:12px;padding:14px 18px;border-bottom:1px solid #EEE7D8;font-weight:600;font-size:15px;white-space:nowrap}
+  .rts-bh span{margin-left:auto;font:500 11.5px 'JetBrains Mono',monospace;color:var(--ink-soft)}
+  .rts-cnt{display:grid;grid-template-columns:repeat(4,1fr);border-bottom:1px solid #EEE7D8}
+  .rts-cnt div{padding:12px 16px;border-right:1px solid #EEE7D8;font:700 10px/1.3 'JetBrains Mono',monospace;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft);white-space:nowrap}
+  .rts-cnt div:last-child{border-right:0}
+  .rts-cnt b{display:block;font:600 25px/1.2 'Space Grotesk',system-ui,sans-serif;color:var(--ink);letter-spacing:0;font-variant-numeric:lining-nums}
+  .rts-bb{display:grid;grid-template-columns:260px minmax(0,1fr)}
+  .rts-bb svg{display:block;border-right:1px solid #EEE7D8}
+  .rts-rw{display:flex;align-items:center;gap:8px;padding:10px 14px;height:55px;border-bottom:1px solid #F3EDE0;font-size:13.5px;line-height:1.35}
+  .rts-rw:last-child{border-bottom:0}
+  .rts-rw.on{background:#FFF3E8;box-shadow:inset 3px 0 0 var(--orange)}
+  .rts-who{white-space:nowrap}
+  .rts-who b{font-weight:600}
+  .rts-who small{display:block;color:var(--ink-soft);font-size:12px}
+  .rts-cx{font:700 10.5px 'JetBrains Mono',monospace;background:var(--cream-2);border-radius:5px;padding:2px 5px;margin-left:2px}
+  .rts-bt{margin-left:auto;display:flex;gap:6px}
+  .rts-b{height:30px;padding:0 10px;border-radius:15px;font-size:12px;font-weight:600;display:flex;align-items:center;white-space:nowrap;border:1px solid #D8CFBE}
+  .rts-b.p{background:var(--ink);border-color:var(--ink);color:#fff}
+  .rts-tg{margin-left:auto;font-size:11.5px;font-weight:700;border-radius:5px;padding:3px 8px;white-space:nowrap}
+  .rts-tg.gr{background:#EAF3E4;color:#2F6D3B}.rts-tg.or{background:#FBE5D6;color:#9A4310}
+  @media(prefers-reduced-motion:reduce){.rts-pulse{display:none}}
+  @media(max-width:660px){
+    .rts-bb{grid-template-columns:minmax(0,1fr)}
+    .rts-bb svg{width:100%;height:auto;border-right:0;border-bottom:1px solid #EEE7D8}
+    .rts-rw{height:auto;min-height:55px;flex-wrap:wrap}
+    .rts-bh{padding:12px 14px;font-size:14px}
+    .rts-cnt div{padding:10px 10px;font-size:9px;letter-spacing:.04em;white-space:normal}
+    .rts-cnt b{font-size:21px}
+  }
+
+  /* Compare: the RTS row takes the opposite stripe so every row below keeps its colour */
+  .ctable .crow.rts-row:not(.head):not(.hl),.crow.rts-row~.crow:nth-child(odd):not(.head):not(.hl){background:transparent}
+  .crow.rts-row~.crow:nth-child(even){background:var(--paper)}
+  .soon{color:var(--orange);font-weight:600}
 </style>
 </head>
 <body>
@@ -594,6 +634,65 @@
   </div>
 </section>
 
+<!-- RTS -->
+<section class="disp-sec rts-sec" id="rts">
+  <div class="wrap rts-split">
+    <div class="disp-copy rts-copy reveal">
+      <div class="sec-eyebrow">RTS</div>
+      <h2>RTS made easy.</h2>
+      <p>The end of the day runs itself. Drivers check in from the app and dispatch answers in one click. When someone needs a rescue, both drivers are alerted on their phones and navigation takes the rescuer straight to them.</p>
+      <ol class="disp-steps">
+        <li><span class="n">1</span><span>The driver taps Route complete. Dispatch answers Head back or Stand by with one click.</span></li>
+        <li><span class="n">2</span><span><b>Need a rescue?</b> Dispatch picks a finished driver and sends them.</span></li>
+        <li><span class="n">3</span><span><b>Connected in seconds.</b> Both drivers get an alert, and the rescuer gets navigation to the other driver's GPS location. Dispatch watches on the live map.</span></li>
+        <li><span class="n">4</span><span>Back-at-station time is recorded for every driver.</span></li>
+      </ol>
+    </div>
+
+    <div class="rts-board reveal">
+      <div class="rts-bh">RTS · Harbor Point (HPD1)<span>Wed · live</span></div>
+      <div class="rts-cnt"><div><b>31</b>On the road</div><div><b>6</b>Route complete</div><div><b>2</b>Rescues</div><div><b>9</b>Back</div></div>
+      <div class="rts-bb">
+        <svg id="rts-map" width="260" height="220" viewBox="0 0 260 220" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Dispatch's live map: a rescue driving along the streets to the driver who needs help">
+          <rect width="260" height="220" fill="#E6ECE2"/>
+          <g fill="#DCE5D6"><rect x="14" y="14" width="56" height="42" rx="4"/><rect x="92" y="14" width="64" height="42" rx="4"/><rect x="178" y="14" width="70" height="42" rx="4"/><rect x="14" y="78" width="56" height="52" rx="4"/><rect x="92" y="78" width="64" height="52" rx="4"/><rect x="178" y="78" width="70" height="52" rx="4"/><rect x="14" y="152" width="56" height="56" rx="4"/><rect x="92" y="152" width="64" height="56" rx="4"/><rect x="178" y="152" width="70" height="56" rx="4"/></g>
+          <path d="M0 67H260M0 141H260M81 0V220M167 0V220" stroke="#fff" stroke-width="12" stroke-linecap="round"/>
+          <!-- planned route: along the streets only -->
+          <path d="M81 30V67H167V141H212" fill="none" stroke="#EA6A20" stroke-opacity=".3" stroke-width="4" stroke-dasharray="7 6" stroke-linecap="round" stroke-linejoin="round"/>
+          <!-- route drawn as the rescue drives it -->
+          <path d="M81 30V67H167V141H198" fill="none" stroke="#EA6A20" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="228" stroke-dashoffset="228"><animate attributeName="stroke-dashoffset" values="228;0;0" keyTimes="0;0.7;1" calcMode="spline" keySplines=".45 0 .25 1;0 0 1 1" dur="6s" repeatCount="indefinite"/></path>
+          <!-- station -->
+          <rect x="18" y="158" width="48" height="34" rx="5" fill="rgba(255,255,255,.75)" stroke="#1C1A17" stroke-width="1.8" stroke-dasharray="5 4"/><text x="42" y="179" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="10" font-weight="700" fill="#1C1A17">HPD1</text>
+          <g stroke="#fff" stroke-width="3">
+            <!-- driver who needs the rescue -->
+            <circle class="rts-pulse" cx="212" cy="141" r="8" fill="none" stroke="#2F7D4F" stroke-width="2"><animate attributeName="r" values="8;22" dur="1.6s" repeatCount="indefinite"/><animate attributeName="opacity" values=".8;0" dur="1.6s" repeatCount="indefinite"/></circle>
+            <circle cx="212" cy="141" r="8" fill="#2F7D4F"/>
+            <!-- other drivers, all on roads -->
+            <circle cx="30" cy="67" r="7" fill="#1C1A17"/><circle cx="167" cy="190" r="7" fill="#1C1A17"/><circle cx="230" cy="67" r="7" fill="#1C1A17"/><circle cx="81" cy="141" r="7" fill="#1C1A17"/>
+            <!-- the rescue, riding the line -->
+            <g>
+              <circle class="rts-pulse" r="8" fill="none" stroke="#EA6A20" stroke-width="2"><animate attributeName="r" values="8;22" dur="1.6s" repeatCount="indefinite"/><animate attributeName="opacity" values=".8;0" dur="1.6s" repeatCount="indefinite"/></circle>
+              <circle r="8" fill="#EA6A20"/>
+              <animateMotion path="M81 30V67H167V141H198" keyPoints="0;1;1" keyTimes="0;0.7;1" calcMode="spline" keySplines=".45 0 .25 1;0 0 1 1" dur="6s" repeatCount="indefinite"/>
+            </g>
+          </g>
+          <rect x="86" y="84" width="76" height="38" rx="6" fill="#1C1A17"/>
+          <g font-family="Inter,system-ui,sans-serif" font-size="9.5" fill="#fff" text-anchor="middle">
+            <g><text x="124" y="100" font-weight="700">Rescue</text><text x="124" y="114">navigating</text><animate attributeName="opacity" values="1;1;0;0" keyTimes="0;0.69;0.7;1" dur="6s" repeatCount="indefinite"/></g>
+            <g opacity="0"><text x="124" y="100" font-weight="700">Arrived ✓</text><text x="124" y="114">18 packages</text><animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.69;0.7;1" dur="6s" repeatCount="indefinite"/></g>
+          </g>
+        </svg>
+        <div>
+          <div class="rts-rw"><div class="rts-who"><b>Alex Rivera</b> <span class="rts-cx">CX14</span><small>Route complete · 6:42 PM</small></div><div class="rts-bt"><span class="rts-b p">Head back</span><span class="rts-b">Stand by</span></div></div>
+          <div class="rts-rw"><div class="rts-who"><b>Jordan Blake</b> <span class="rts-cx">CX22</span><small>Route complete · 6:44 PM</small></div><div class="rts-bt"><span class="rts-b p">Head back</span><span class="rts-b">Stand by</span></div></div>
+          <div class="rts-rw on"><div class="rts-who"><b>Sam Ortega → Casey Lin</b> <span class="rts-cx">CX31</span><small>Rescue · navigating · 4 min away</small></div><span class="rts-tg or">On the way</span></div>
+          <div class="rts-rw"><div class="rts-who"><b>Riley Park</b> <span class="rts-cx">CX09</span><small>Back at station · 6:31 PM</small></div><span class="rts-tg gr">Back</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- DIFFERENTIATORS -->
 <section id="why" style="background:var(--paper)">
   <div class="wrap">
@@ -630,6 +729,20 @@
         <h3>Every driver knows their own numbers.</h3>
         <p>Drivers get daily and weekly reports in the app — their own stats, what they did well, what to work on, and where they stand. Better drivers, without you chasing every one of them down.</p>
         <div class="noone">★ Turns your data into drivers who improve themselves</div>
+      </div>
+
+      <div class="diff reveal">
+        <span class="tag">RTS</span>
+        <h3>RTS made easy.</h3>
+        <p>When a driver finishes their route, they tap Route complete in the app. Dispatch sees it right away and answers Head back or Stand by with one click. Every driver's back-at-station time is recorded for you.</p>
+        <div class="noone">★ The end of the day, without everyone calling dispatch at once</div>
+      </div>
+
+      <div class="diff reveal">
+        <span class="tag">Rescues</span>
+        <h3>Send a rescue and watch it arrive.</h3>
+        <p>Pick a driver who has finished and send them to help. They accept on their phone, both drivers are alerted, and navigation takes the rescuer to the other driver's GPS location. Dispatch watches on the live map until the packages change hands.</p>
+        <div class="noone">★ Rescues and roadside help, tracked live from start to finish</div>
       </div>
     </div>
   </div>
@@ -700,6 +813,9 @@
       <div class="feat"><div class="fnum">13</div><h3>Operators &amp; access</h3><p>Give every dispatcher, manager and office lead their own login with exactly the tabs they need — and an audit trail of who changed what, when.</p></div>
       <div class="feat"><div class="fnum">14</div><h3>Multi-station</h3><p>Run every station under your DSP from one account — each with its own shift types, route types, vehicles and drivers, and one login for the people who run them all.</p></div>
       <div class="feat"><div class="fnum">15</div><h3>Synthesized dashboard</h3><p>All your data — scorecards, safety, hours, disputes — pulled together into one live dashboard so you see the whole operation at a glance.</p></div>
+      <div class="feat"><div class="fnum">16</div><h3>RTS &amp; rescues</h3><p>Route complete, Head back or Stand by, rescues and roadside assistance on a live map, and back-at-station times for every driver.</p></div>
+      <div class="feat"><div class="fnum">17</div><h3>Work reminders</h3><p>Drivers are told the night before and the morning of what time to come in, by wave, in English or Spanish.</p></div>
+      <div class="feat"><div class="fnum">18</div><h3>Payroll integrations</h3><p>ADP and Paycom integration. <span class="soon">Coming soon.</span></p></div>
     </div>
   </div>
 </section>
@@ -718,6 +834,7 @@
         <div class="ccell ccol us">Routzi</div>
       </div>
       <div class="crow hl"><div class="ccell"><span class="cl-main">No scraping. Your Amazon contract stays safe.</span><span class="cl-sub">Amazon doesn't allow tools that scrape its portals. Routzi never logs into Amazon; it works from the reports you download. <a class="cl-link" href="/no-scraping.html">Why this matters →</a></span></div><div class="ccell ccol ask">Ask them</div><div class="ccell ccol us">✓</div></div>
+      <div class="crow rts-row"><div class="ccell"><span class="cl-main">RTS: route complete, rescues and a live map</span><span class="cl-sub">Drivers check in from the app; dispatch answers in one click.</span></div><div class="ccell ccol them">✕</div><div class="ccell ccol us">✓</div></div>
       <div class="crow"><div class="ccell">OTR disputes tagged with Amazon's reasons and ready before Monday's cutoff</div><div class="ccell ccol them">✕</div><div class="ccell ccol us">✓</div></div>
       <div class="crow"><div class="ccell">Hours &amp; overtime caught <em>before</em> they happen (projected)</div><div class="ccell ccol them">✕</div><div class="ccell ccol us">✓</div></div>
       <div class="crow"><div class="ccell">Automatic surfacing of disputable charges + guided filing</div><div class="ccell ccol them">✕</div><div class="ccell ccol us">✓</div></div>
@@ -761,7 +878,7 @@
           <li><span class="t">✓</span>Unlimited drivers &amp; operator logins</li>
           <li><span class="t">✓</span>Every station under your DSP</li>
         </ul>
-        <div class="inc-foot">No per-driver math, no tiers, no add-ons. <b>One plan, and it has everything.</b></div>
+        <div class="inc-foot">No per-driver math, no tiers. <b>One plan, and it has everything.</b> Text messages are optional, at 1.15¢ each.</div>
       </div>
       <div class="calc-right">
         <div class="calc-label">Billed monthly</div>
@@ -816,6 +933,9 @@
   }
   const io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}})},{threshold:.12});
   document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+  // RTS map: hold a still frame for reduced motion (SMIL ignores the CSS media query)
+  const rtsMap=document.getElementById('rts-map');
+  if(rtsMap&&window.matchMedia('(prefers-reduced-motion: reduce)').matches){rtsMap.pauseAnimations();rtsMap.setCurrentTime(2.4);}
   // logo click -> smooth scroll to top (home)
   document.querySelectorAll('a.logo').forEach(l=>l.addEventListener('click',e=>{e.preventDefault();window.scrollTo({top:0,behavior:'smooth'});}));
 </script>
