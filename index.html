@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" data-launch-week="on">
+<!-- Launch Week postmark: to take it down, change data-launch-week from "on" to "off" on line 2 above. -->
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -413,7 +414,11 @@
   .lw-spin{transform-origin:75px 75px}
   .lw-ink{display:none;position:absolute;inset:0;border-radius:50%;border:3px solid var(--orange)}
   .lw-pop{position:absolute;left:50%;top:50%;opacity:0}
-  [data-launch-week="on"] .lw-desk{display:block;top:-59px;left:min(379px,calc(100% - 142px))}
+  /* computer: up and right of the card's corner, clear of the card's timestamp; between 901 and 1205px the card
+     nearly meets the screen edge, so the stamp scales down (82-150px) to stay clear of the timestamp and on screen */
+  [data-launch-week="on"] .lw-desk{display:block;top:-63px;right:-16px;width:clamp(82px,calc(89% - 332px),150px);height:auto;aspect-ratio:1}
+  .lw-desk svg{height:auto}
+  @media(min-width:1206px){[data-launch-week="on"] .lw-desk{right:auto;left:405px;top:-64px;width:150px}}
   [data-launch-week="on"] .lw-spin{animation:lw-spin 40s linear infinite}
   .lw-play svg{animation:lw-thump .55s cubic-bezier(.3,1.4,.5,1) both}
   .lw-play .lw-ink{display:block;animation:lw-ring .7s .35s ease-out both}
@@ -528,7 +533,7 @@
     try{if(sessionStorage.getItem('lw-landed'))return;sessionStorage.setItem('lw-landed','1');}catch(e){}
     var phone=window.matchMedia('(max-width: 900px)').matches;
     var st=document.querySelector(phone?'.lw-phone':'.lw-desk');if(!st)return;
-    var cols=['#EA6A20','#F6C89A','#1C1A17','#2F7D4F'],k=phone?88/150:1,r=function(a,b){return a+Math.random()*(b-a)};
+    var cols=['#EA6A20','#F6C89A','#1C1A17','#2F7D4F'],k=(st.offsetWidth||150)/150,r=function(a,b){return a+Math.random()*(b-a)};
     for(var i=0;i<26;i++){var p=document.createElement('i'),a=r(0,Math.PI*2),d=r(95,170)*k,bar=Math.random()<.6;p.className='lw-pop';
       p.style.cssText='width:'+(bar?10:6)+'px;height:'+(bar?4:6)+'px;border-radius:'+(bar?'1px':'50%')+';background:'+cols[i%4]+';--x:'+Math.round(Math.cos(a)*d)+'px;--y:'+Math.round(Math.sin(a)*d*.8)+'px;--r:'+Math.round(r(-300,300))+'deg';
       st.insertBefore(p,st.firstChild);}
